@@ -4,7 +4,7 @@ const sharp = require('sharp');
 const app = express();
 const port = 3000;
 
-app.use(express.text());
+app.use(express.json());
 
 app.get('/up', async (req, res) => {
     res.status(200).json({ status: 'ok' });
@@ -16,10 +16,10 @@ app.post('/webp_to_jpeg', async (req, res) => {
             res.status(403).json({ error: 'Unauthorized' });
         }
 
-        const { imageUrl } = req.body;
+        const { image_url } = req.body;
 
         // Baixar a imagem da URL
-        const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
+        const response = await axios.get(image_url, { responseType: 'arraybuffer' });
         
         // Converter a imagem de WEBP para JPEG usando Sharp
         const jpegBuffer = await sharp(response.data)
