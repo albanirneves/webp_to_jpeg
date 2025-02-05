@@ -29,7 +29,7 @@ app.post('/webp_to_jpeg', async (req, res) => {
         // Converter buffer para Base64
         const base64Image = jpegBuffer.toString('base64');
         
-        res.json({ base64Image: `data:image/jpeg;base64,${base64Image}` });
+        res.json({ base64Image });
         
     } catch (error) {
         res.status(500).json(error);
